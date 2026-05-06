@@ -8,8 +8,9 @@ import { cn } from '@/lib/utils';
 import { SectionContainer } from './section-container';
 
 import { useLanguage } from '@/lib/i18n';
+import { type Language } from '@/lib/dictionaries';
 
-const LANGUAGES = [
+const LANGUAGES: { code: Language; label: string; flag: string }[] = [
   { code: 'RU', label: 'Русский',    flag: '🇷🇺' },
   { code: 'EN', label: 'English',    flag: '🇬🇧' },
   { code: 'KZ', label: 'Қазақша',   flag: '🇰🇿' },
@@ -57,23 +58,11 @@ export default function Header() {
 
           {/* Логотип */}
           <div className="flex items-center px-6 md:px-10 border-r border-gray-200 select-none">
-            <span className="whitespace-nowrap flex items-center gap-2">
-              <span
-                className="font-black text-lg tracking-tight bg-clip-text text-transparent"
-                style={{
-                  backgroundImage: 'linear-gradient(135deg, #1E1B4B 0%, #6366F1 60%, #818CF8 100%)',
-                }}
-              >
+            <span className="whitespace-nowrap flex items-center gap-2.5">
+              <span className="font-black text-xl tracking-tight text-[#1E1B4B]">
                 KAMZINO
               </span>
-              <span
-                className="font-black text-lg tracking-tight px-2 py-0.5 rounded-md"
-                style={{
-                  color: '#6366F1',
-                  background: 'rgba(99,102,241,0.08)',
-                  border: '1px solid rgba(99,102,241,0.18)',
-                }}
-              >
+              <span className="font-black text-xl tracking-tight text-[#6366F1]">
                 LAB
               </span>
             </span>

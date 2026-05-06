@@ -6,9 +6,10 @@ export const dictionaries = {
       contact: 'Связаться',
     },
     hero: {
-      title1: 'Мониторинг ваших данных',
-      title2: 'в реальном времени',
-      subtitle: 'Высокопроизводительная разработка и системы мониторинга в реальном времени для современной инфраструктуры. Создано на базе Go, TypeScript и передовых сенсорных технологий.',
+      eyebrow: 'Разработка программного обеспечения',
+      title1: 'Разрабатываем ПО',
+      title2: 'для нагруженных систем',
+      subtitle: 'Проектируем backend-архитектуры, IoT-платформы и системы мониторинга реального времени. Работаем со стартапами и предприятиями по всему Казахстану.',
       contactBtn: 'Связаться с нами',
     },
     featured: {
@@ -93,9 +94,10 @@ export const dictionaries = {
       contact: 'Contact Us',
     },
     hero: {
-      title1: 'Monitor your data',
-      title2: 'in real-time',
-      subtitle: 'High-performance development and real-time monitoring systems for modern infrastructure. Built with Go, TypeScript, and cutting-edge sensor technologies.',
+      eyebrow: 'Software Development',
+      title1: 'We build software',
+      title2: 'for high-load systems',
+      subtitle: 'Backend architectures, IoT platforms and real-time monitoring systems. Working with startups and enterprises across Kazakhstan.',
       contactBtn: 'Contact us',
     },
     featured: {
@@ -180,9 +182,10 @@ export const dictionaries = {
       contact: 'Байланысу',
     },
     hero: {
-      title1: 'Деректеріңізді бақылаңыз',
-      title2: 'нақты уақытта',
-      subtitle: 'Заманауи инфрақұрылымға арналған жоғары өнімділікті әзірлеу және нақты уақыттағы бақылау жүйелері. Go, TypeScript және озық сенсорлық технологиялармен жасалған.',
+      eyebrow: 'Бағдарламалық қамтамасыз етуді әзірлеу',
+      title1: 'Жоғары жүктемелі',
+      title2: 'жүйелер жасаймыз',
+      subtitle: 'Бэкенд-архитектуралар, IoT-платформалар және нақты уақыттағы бақылау жүйелері. Қазақстан бойынша стартаптар мен кәсіпорындармен жұмыс істейміз.',
       contactBtn: 'Бізбен байланысу',
     },
     featured: {

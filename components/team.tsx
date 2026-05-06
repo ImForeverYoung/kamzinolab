@@ -141,11 +141,11 @@ function LeaderCard({ person, idx, t }: { person: typeof ROSTER[0]; idx: number;
           {person.tag}
         </span>
         <h3
-          className="mt-3 mb-1 text-[22px] font-bold text-white tracking-tight leading-tight"
+          className="mt-3 mb-1 text-2xl font-bold text-white tracking-tight leading-tight"
         >
           {person.name}
         </h3>
-        <p className="text-sm" style={{ color: 'rgba(255,255,255,0.55)' }}>
+        <p className="text-base" style={{ color: 'rgba(255,255,255,0.7)' }}>
           {t.team.roles[person.role] || person.role}
         </p>
       </div>
@@ -177,10 +177,10 @@ function EngineerCard({ person, animIdx, t }: { person: typeof ROSTER[0]; animId
 
       {/* Mono tag */}
       
-      <p className="mt-[6px] mb-[2px] text-sm font-semibold text-[#1E1B4B] leading-snug">
+      <p className="mt-[6px] mb-[2px] text-base font-semibold text-[#1E1B4B] leading-snug">
         {person.name}
       </p>
-      <p className="text-xs text-gray-500">{t.team.roles[person.role] || person.role}</p>
+      <p className="text-sm text-gray-500">{t.team.roles[person.role] || person.role}</p>
     </motion.div>
   );
 }
@@ -206,7 +206,7 @@ export default function Team() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="block text-[11px] font-bold uppercase tracking-[0.18em] text-[#6366F1] mb-4"
+              className="block text-base font-bold uppercase tracking-[0.18em] text-[#6366F1] mb-4"
             >
               {t.team.eyebrow}
             </motion.span>
@@ -269,16 +269,8 @@ export default function Team() {
           ))}
         </div>
 
-        {/* ── Divider: full-stack label ── */}
-        <div className="flex items-center gap-4 mt-8 mb-6">
-          <span
-            className="text-[10px] font-semibold tracking-[0.18em] text-gray-400 shrink-0"
-            style={{ fontFamily: 'var(--font-geist-mono, monospace)' }}
-          >
-            {t.team.fullstack}
-          </span>
-          <div className="flex-1 h-px bg-gray-200" />
-        </div>
+        {/* ── Divider ── */}
+        <div className="mt-8 mb-6 w-full border-t border-gray-200" />
 
         {/* ── Engineers: 4 cards, top row ── */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

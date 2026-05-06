@@ -68,7 +68,7 @@ export default function FooterContactForm() {
           <div key={id} className="flex flex-col gap-1.5">
             <label
               htmlFor={`footer-${id}`}
-              className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-400"
+              className="text-xs font-semibold uppercase tracking-[0.14em] text-gray-500"
             >
               {t.form.labels[id as keyof typeof t.form.labels]}
             </label>
@@ -82,7 +82,7 @@ export default function FooterContactForm() {
               onChange={e => handleChange(id, e.target.value)}
               onFocus={() => setFocused(id)}
               onBlur={() => setFocused(null)}
-              className="w-full px-4 py-3 text-sm text-[#1E1B4B] bg-white rounded-lg outline-none placeholder:text-gray-300 transition-all duration-150"
+              className="w-full px-4 py-3 text-base text-[#1E1B4B] bg-white rounded-lg outline-none placeholder:text-gray-400 transition-all duration-150"
               style={{
                 border:     focused === id ? '1px solid #6366F1' : '1px solid #E5E7EB',
                 boxShadow:  focused === id ? '0 0 0 3px rgba(99,102,241,0.10)' : 'none',
@@ -94,7 +94,7 @@ export default function FooterContactForm() {
         <button
           type="submit"
           disabled={sending}
-          className="mt-1 w-full flex items-center justify-center gap-2 px-5 py-3 bg-[#6366F1] hover:bg-[#4F46E5] disabled:opacity-60 text-white text-sm font-semibold rounded-lg transition-colors duration-150"
+          className="mt-1 w-full flex items-center justify-center gap-2 px-5 py-3.5 bg-[#6366F1] hover:bg-[#4F46E5] disabled:opacity-60 text-white text-base font-semibold rounded-lg transition-colors duration-150"
         >
           {sending ? (
             <>

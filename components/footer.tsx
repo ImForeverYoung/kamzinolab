@@ -15,10 +15,10 @@ export default function Footer() {
 
           {/* Left — heading + description */}
           <div className="space-y-4">
-            <span className="block text-[11px] font-bold uppercase tracking-[0.18em] text-[#6366F1]">
+            <span className="block text-base font-bold uppercase tracking-[0.18em] text-[#6366F1]">
               {t.footer.contactEyebrow}
             </span>
-            <h2 className="text-3xl font-bold text-[#1E1B4B] leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1E1B4B] leading-tight">
               {t.footer.contactTitle}
             </h2>
             <p className="text-gray-500 leading-relaxed text-sm max-w-sm">
