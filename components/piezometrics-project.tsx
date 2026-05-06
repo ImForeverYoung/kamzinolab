@@ -116,14 +116,7 @@ export default function PiezometricsProject() {
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
             className="py-24 md:py-36"
           >
-            {/* Back link */}
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-white/35 hover:text-white/65 text-sm mb-14 transition-colors"
-            >
-              <ArrowLeft size={13} />
-              KAMZINO LAB
-            </Link>
+            
 
             {/* Logo */}
             <motion.div
@@ -337,39 +330,7 @@ export default function PiezometricsProject() {
         </SectionContainer>
       </section>
 
-      {/* ═══ CTA ════════════════════════════════════════════════════════════ */}
-      <section className="w-full bg-white border-t border-gray-100">
-        <SectionContainer border className="py-20">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: NAVY }}>
-                Есть похожая задача?
-              </h2>
-              <p className="text-gray-500">
-                Расскажите о вашем проекте — обсудим архитектуру и сроки.
-              </p>
-            </div>
-            <div className="flex items-center gap-3 shrink-0">
-              <Link
-                href="/"
-                className="px-5 py-3 text-sm font-medium text-gray-600 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                ← На главную
-              </Link>
-              <a
-                href="https://wa.me/77071740428"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-lg transition-opacity hover:opacity-90"
-                style={{ background: `linear-gradient(90deg, ${RED}, #c0271f)` }}
-              >
-                Обсудить проект
-                <ArrowRight size={14} />
-              </a>
-            </div>
-          </div>
-        </SectionContainer>
-      </section>
+      
     </>
   );
 }

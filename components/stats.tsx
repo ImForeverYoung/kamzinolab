@@ -3,14 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { SectionContainer } from './section-container';
-
-// ── Данные ───────────────────────────────────────────────────────────────────
-const STATS = [
-  { value: '5+',    label: 'лет опыта',       sub: 'в enterprise-разработке'  },
-  { value: '99.9%', label: 'аптайм',          sub: 'систем мониторинга'       },
-  { value: '24/7',  label: 'сбор данных',     sub: 'в реальном времени'       },
-  { value: 'Go',    label: '& TypeScript',    sub: 'стек для highload-систем' },
-];
+import { useLanguage } from '@/lib/i18n';
 
 // ── Particle canvas ──────────────────────────────────────────────────────────
 interface Particle {
@@ -111,6 +104,7 @@ function ParticleCanvas() {
 
 // ── Главный компонент ────────────────────────────────────────────────────────
 export default function Stats() {
+  const { t } = useLanguage();
   const ref    = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
@@ -133,7 +127,7 @@ export default function Stats() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-            Надёжная основа<br />для ваших данных
+            {t.stats.title1}<br />{t.stats.title2}
           </h2>
         </motion.div>
 
@@ -141,7 +135,7 @@ export default function Stats() {
 
         {/* Статы */}
         <div className="grid grid-cols-2 md:grid-cols-4">
-          {STATS.map((s, i) => (
+          {t.stats.items.map((s, i) => (
             <motion.div
               key={s.label}
               initial={{ opacity: 0, y: 20 }}

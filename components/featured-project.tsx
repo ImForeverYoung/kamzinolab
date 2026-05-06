@@ -5,18 +5,12 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { SectionContainer } from './section-container';
 import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n';
 
 // ── Piezometrics sub-brand colours ───────────────────────────────────────────
 const RED   = '#ED3128';
 const AMBER = '#FCC96F';
 const NAVY  = '#02294D';
-
-const METRICS = [
-  { value: '200+',  label: 'Активных датчиков', sub: 'в полевых условиях'  },
-  { value: '<50мс', label: 'Задержка данных',    sub: 'от датчика до UI'    },
-  { value: '99.9%', label: 'Аптайм системы',     sub: 'гарантированный SLA' },
-  { value: '2024',  label: 'Год запуска',         sub: 'в продакшн'          },
-];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // The Piezometrics card is a *floating* surface presented inside the lab's
@@ -27,11 +21,13 @@ const METRICS = [
 //   • "Featured Project" eyebrow in brand indigo before the card takes over
 // ─────────────────────────────────────────────────────────────────────────────
 export default function FeaturedProject() {
+  const { t } = useLanguage();
+
   return (
-    <section className="relative w-full bg-white overflow-hidden">
+    <section className="relative w-full">
 
       {/* ── Background glow blobs — continuation of Hero's wash ── */}
-      <div aria-hidden className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div aria-hidden className="absolute inset-0 pointer-events-none">
         {/* blue-purple-pink top-right */}
         <div
           className="absolute -top-30 -right-30 w-[520px] h-[520px] rounded-full opacity-[0.18]"
@@ -59,7 +55,7 @@ export default function FeaturedProject() {
       </div>
 
       {/* ── Outer 1280px frame — hairline-bordered family ── */}
-      <SectionContainer border className="relative z-10 py-24">
+      <SectionContainer border className="relative z-10 pt-10 pb-24">
 
         {/* "Featured Project" eyebrow — lab voice before the dark card */}
         <motion.div
@@ -67,10 +63,10 @@ export default function FeaturedProject() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-8"
+          className="text-center mb-16"
         >
-          <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#6366F1]">
-            Featured Project
+          <span className="text-sm md:text-base font-bold uppercase tracking-[0.45em] text-[#6366F1] inline-block ml-[0.45em]">
+            {t.featured.eyebrow}
           </span>
         </motion.div>
 
@@ -151,12 +147,12 @@ export default function FeaturedProject() {
                 className="text-[11px] font-bold uppercase tracking-[0.18em] block mb-4"
                 style={{ color: RED }}
               >
-                Flagship
+                {t.featured.flagship}
               </span>
 
               {/* Logo */}
               <Image
-                src="/piezometrics/logo-horizontal-light.svg"
+                src="/piezometrics/logo-horizontal.svg"
                 alt="Piezometrics"
                 width={260}
                 height={66}
@@ -167,12 +163,12 @@ export default function FeaturedProject() {
               <h2
                 className="text-3xl md:text-[40px] font-bold text-white leading-[1.1] tracking-tight max-w-[680px] mb-[18px]"
               >
-                Мониторинг пьезометрических данных{' '}
+                {t.featured.title1}{' '}
                 <span
                   className="inline-block bg-clip-text text-transparent"
                   style={{ backgroundImage: `linear-gradient(90deg, ${RED}, ${AMBER})` }}
                 >
-                  в реальном времени
+                  {t.featured.title2}
                 </span>
               </h2>
 
@@ -181,13 +177,12 @@ export default function FeaturedProject() {
                 className="text-base leading-relaxed max-w-[540px] mb-6"
                 style={{ color: 'rgba(255,255,255,0.55)' }}
               >
-                Платформа для непрерывного сбора, хранения и визуализации данных грунтовых вод
-                на строительных и промышленных объектах Казахстана.
+                {t.featured.desc}
               </p>
 
               {/* Tags */}
               <div className="flex flex-wrap gap-2 mb-12">
-                {['IoT / Сенсоры', 'Мониторинг', 'Веб-платформа', '2024'].map(tag => (
+                {t.featured.tags.map(tag => (
                   <span
                     key={tag}
                     className="px-3 py-1 text-xs font-medium rounded-full"
@@ -202,16 +197,16 @@ export default function FeaturedProject() {
               </div>
 
               {/* CTA link */}
-              <div className="mb-10">
+              {/* <div className="mb-10">
                 <Link
                   href="/projects"
                   className="inline-flex items-center gap-2 text-sm font-semibold transition-opacity hover:opacity-75"
                   style={{ color: AMBER }}
                 >
-                  Подробнее о проекте
+                  {t.featured.more}
                   <ArrowRight size={14} />
                 </Link>
-              </div>
+              </div> */}
 
               {/* Metrics strip — flush to bottom of card */}
               <div
@@ -223,7 +218,7 @@ export default function FeaturedProject() {
                   padding: '0 56px',
                 }}
               >
-                {METRICS.map((m, i) => (
+                {t.featured.metrics.map((m, i) => (
                   <div
                     key={m.label}
                     className="flex flex-col py-[22px]"

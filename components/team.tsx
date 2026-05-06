@@ -2,20 +2,21 @@
 
 import { motion } from 'framer-motion';
 import { SectionContainer } from './section-container';
+import { useLanguage } from '@/lib/i18n';
 
 // ── Roster ────────────────────────────────────────────────────────────────────
 // 9 people: 1 руководитель, 1 тимлид, 7 full-stack.
 // Replace `initials` with <img> tags when real photos arrive.
 const ROSTER = [
-  { name: 'Бауржан Альжанов',    role: 'Руководитель', tag: 'HEAD',  rank: 0, initials: 'АК' },
+  { name: 'Бауржан Альжанов',    role: 'Руководитель', tag: 'HEAD',  rank: 0, initials: 'БА' },
   { name: 'Рахат', role: 'Тимлид',       tag: 'LEAD',  rank: 1, initials: 'ДМ' },
-  { name: 'Айбар Кенбай',      role: 'Full-stack',   tag: 'FS-01', rank: 2, initials: 'ЛК' },
-  { name: 'Дархан Шалбаев',  role: 'Full-stack',   tag: 'FS-02', rank: 2, initials: 'АС' },
-  { name: 'Бахтияр Калкенов',    role: 'Full-stack',   tag: 'FS-03', rank: 2, initials: 'ТБ' },
-  { name: 'Нурали Есберген',    role: 'Full-stack',   tag: 'FS-04', rank: 2, initials: 'ЖА' },
-  { name: 'Алиби Тахтанов',  role: 'Full-stack',   tag: 'FS-05', rank: 2, initials: 'РС' },
-  { name: 'Ансар Антаев',  role: 'Full-stack',   tag: 'FS-06', rank: 2, initials: 'МЖ' },
-  { name: 'Амре Мади Джумадиев',    role: 'Full-stack',   tag: 'FS-07', rank: 2, initials: 'ОТ' },
+  { name: 'Айбар Кенбай',      role: 'Full-stack',   tag: 'FS-01', rank: 2, initials: 'АК' },
+  { name: 'Дархан Шалбаев',  role: 'Full-stack',   tag: 'FS-02', rank: 2, initials: 'ДШ' },
+  { name: 'Бахтияр Калкенов',    role: 'Full-stack',   tag: 'FS-03', rank: 2, initials: 'БК' },
+  { name: 'Нурали Есберген',    role: 'Full-stack',   tag: 'FS-04', rank: 2, initials: 'НЕ' },
+  { name: 'Алиби Тахтанов',  role: 'Full-stack',   tag: 'FS-05', rank: 2, initials: 'АТ' },
+  { name: 'Ансар Антаев',  role: 'Full-stack',   tag: 'FS-06', rank: 2, initials: 'АА' },
+  { name: 'Амре Мади Джумадиев',    role: 'Full-stack',   tag: 'FS-07', rank: 2, initials: 'АД' },
 ];
 
 // Indigo-tinted portrait gradients — vary by index
@@ -77,7 +78,7 @@ function Portrait({
 }
 
 // ── Leadership card ───────────────────────────────────────────────────────────
-function LeaderCard({ person, idx }: { person: typeof ROSTER[0]; idx: number }) {
+function LeaderCard({ person, idx, t }: { person: typeof ROSTER[0]; idx: number; t: any }) {
   return (
     <div
       className="relative overflow-hidden transition-shadow duration-200 hover:shadow-[0_13px_27px_-5px_rgba(50,50,93,0.25),0_8px_16px_-8px_rgba(0,0,0,0.30)]"
@@ -145,7 +146,7 @@ function LeaderCard({ person, idx }: { person: typeof ROSTER[0]; idx: number }) 
           {person.name}
         </h3>
         <p className="text-sm" style={{ color: 'rgba(255,255,255,0.55)' }}>
-          {person.role}
+          {t.team.roles[person.role] || person.role}
         </p>
       </div>
     </div>
@@ -153,7 +154,7 @@ function LeaderCard({ person, idx }: { person: typeof ROSTER[0]; idx: number }) 
 }
 
 // ── Engineer card ─────────────────────────────────────────────────────────────
-function EngineerCard({ person, animIdx }: { person: typeof ROSTER[0]; animIdx: number }) {
+function EngineerCard({ person, animIdx, t }: { person: typeof ROSTER[0]; animIdx: number; t: any }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -179,13 +180,14 @@ function EngineerCard({ person, animIdx }: { person: typeof ROSTER[0]; animIdx: 
       <p className="mt-[6px] mb-[2px] text-sm font-semibold text-[#1E1B4B] leading-snug">
         {person.name}
       </p>
-      <p className="text-xs text-gray-500">{person.role}</p>
+      <p className="text-xs text-gray-500">{t.team.roles[person.role] || person.role}</p>
     </motion.div>
   );
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
 export default function Team() {
+  const { t } = useLanguage();
   const head      = ROSTER[0];
   const lead      = ROSTER[1];
   const engineers = ROSTER.slice(2);          // 7 full-stack
@@ -206,7 +208,7 @@ export default function Team() {
               transition={{ duration: 0.5 }}
               className="block text-[11px] font-bold uppercase tracking-[0.18em] text-[#6366F1] mb-4"
             >
-              Команда
+              {t.team.eyebrow}
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 16 }}
@@ -215,7 +217,7 @@ export default function Team() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="text-[44px] font-bold text-[#1E1B4B] leading-[1.1] tracking-tight max-w-[640px]"
             >
-              Девять инженеров.<br />Один продукт.
+              {t.team.title1}<br />{t.team.title2}
             </motion.h2>
             {/* <motion.p
               initial={{ opacity: 0 }}
@@ -253,8 +255,8 @@ export default function Team() {
         </div>
 
         {/* ── Leadership pair ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-14">
-          {[head, lead].map((p, i) => (
+        <div className="flex items-center justify-center md:auto mt-14">
+          {[head].map((p, i) => (
             <motion.div
               key={p.name}
               initial={{ opacity: 0, y: 20 }}
@@ -262,7 +264,7 @@ export default function Team() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.55, delay: i * 0.08 }}
             >
-              <LeaderCard person={p} idx={i} />
+              <LeaderCard person={p} idx={i} t={t} />
             </motion.div>
           ))}
         </div>
@@ -273,7 +275,7 @@ export default function Team() {
             className="text-[10px] font-semibold tracking-[0.18em] text-gray-400 shrink-0"
             style={{ fontFamily: 'var(--font-geist-mono, monospace)' }}
           >
-            FULL-STACK · 7
+            {t.team.fullstack}
           </span>
           <div className="flex-1 h-px bg-gray-200" />
         </div>
@@ -281,7 +283,7 @@ export default function Team() {
         {/* ── Engineers: 4 cards, top row ── */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {rowTop.map((p, i) => (
-            <EngineerCard key={p.name} person={p} animIdx={i} />
+            <EngineerCard key={p.name} person={p} animIdx={i} t={t} />
           ))}
         </div>
 
@@ -301,14 +303,14 @@ export default function Team() {
                 gridColumn: i === 0 ? '2 / span 2' : i === 1 ? '4 / span 2' : '6 / span 2',
               }}
             >
-              <EngineerCard person={p} animIdx={i + 4} />
+              <EngineerCard person={p} animIdx={i + 4} t={t} />
             </div>
           ))}
         </div>
         {/* Mobile fallback: 3 cards in 3-column grid */}
         <div className="grid grid-cols-3 gap-4 mt-4 md:hidden">
           {rowBottom.map((p, i) => (
-            <EngineerCard key={p.name} person={p} animIdx={i + 4} />
+            <EngineerCard key={p.name} person={p} animIdx={i + 4} t={t} />
           ))}
         </div>
 

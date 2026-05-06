@@ -2,15 +2,18 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Globe, MessageCircle, X, ArrowRight } from 'lucide-react';
+import { Globe, MessageCircle, X, ArrowRight, Check } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { SectionContainer } from './section-container';
 
-const NAV_LINKS = [
-  { label: 'Связаться',    href: '#contact'    },
-];
+import { useLanguage } from '@/lib/i18n';
 
-const LANGUAGES = ['RU', 'EN', 'KZ'];
+const LANGUAGES = [
+  { code: 'RU', label: 'Русский',    flag: '🇷🇺' },
+  { code: 'EN', label: 'English',    flag: '🇬🇧' },
+  { code: 'KZ', label: 'Қазақша',   flag: '🇰🇿' },
+];
 
 const WA_NUMBER  = '77071740428';
 const WA_DESKTOP = `https://web.whatsapp.com/send?phone=${WA_NUMBER}`;
@@ -18,8 +21,14 @@ const WA_MOBILE  = `https://wa.me/${WA_NUMBER}`;
 const QR_URL     = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(WA_MOBILE)}`;
 
 export default function Header() {
+  const { lang, setLang, t } = useLanguage();
   const [musicOn,  setMusicOn]  = useState(false);
-  const [lang,     setLang]     = useState('RU');
+  
+  const NAV_LINKS = [
+    { label: t.nav.contact, href: '#contact' },
+  ];
+
+  const activeLang = LANGUAGES.find(l => l.code === lang)!
   const [langOpen, setLangOpen] = useState(false);
   const [waOpen,   setWaOpen]   = useState(false);
 
@@ -37,7 +46,7 @@ export default function Header() {
 
   return (
     // h-16/h-20 живёт здесь — SectionContainer и левый блок растянутся до этой высоты
-    <header className="w-full bg-white border-b border-gray-200 sticky top-0 z-50 h-15 md:h-15">
+    <header className="w-full bg-white border-b border-gray-200 h-15 md:h-15">
 
       {/* px-0 md:px-0 — переопределяем дефолтные отступы SectionContainer:
           левый блок сам управляет своим отступом через pl-6 md:pl-10            */}
@@ -48,8 +57,25 @@ export default function Header() {
 
           {/* Логотип */}
           <div className="flex items-center px-6 md:px-10 border-r border-gray-200 select-none">
-            <span className="font-bold text-base text-[#1E1B4B] whitespace-nowrap">
-              KAMZINO <span className="text-gray-400 font-bold">LAB</span>
+            <span className="whitespace-nowrap flex items-center gap-2">
+              <span
+                className="font-black text-lg tracking-tight bg-clip-text text-transparent"
+                style={{
+                  backgroundImage: 'linear-gradient(135deg, #1E1B4B 0%, #6366F1 60%, #818CF8 100%)',
+                }}
+              >
+                KAMZINO
+              </span>
+              <span
+                className="font-black text-lg tracking-tight px-2 py-0.5 rounded-md"
+                style={{
+                  color: '#6366F1',
+                  background: 'rgba(99,102,241,0.08)',
+                  border: '1px solid rgba(99,102,241,0.18)',
+                }}
+              >
+                LAB
+              </span>
             </span>
           </div>
 
@@ -74,27 +100,49 @@ export default function Header() {
             <button
               onClick={() => setLangOpen(v => !v)}
               title="Сменить язык"
-              className="flex items-center justify-center gap-1.5 w-15 md:w-15 h-full text-gray-500 hover:text-gray-700 hover:bg-gray-50 transition-colors text-[0.9rem] font-semibold"
+              className={cn(
+                'flex items-center justify-center w-15 md:w-15 h-full transition-colors text-[0.9rem] font-semibold select-none',
+                langOpen
+                  ? 'text-[#6366F1] bg-indigo-50'
+                  : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+              )}
             >
-             
-              {lang}
+              {activeLang.code}
             </button>
-            {langOpen && (
-              <div className="absolute left-0 top-[calc(100%+1px)] bg-white border border-gray-200 rounded-xl shadow-lg py-1 min-w-[72px] z-50">
-                {LANGUAGES.map(l => (
-                  <button
-                    key={l}
-                    onClick={() => { setLang(l); setLangOpen(false); }}
-                    className={cn(
-                      'w-full text-left px-3 py-2 text-xs font-medium transition-colors',
-                      l === lang ? 'text-[#6366F1] bg-indigo-50' : 'text-gray-600 hover:bg-gray-50'
-                    )}
-                  >
-                    {l}
-                  </button>
-                ))}
-              </div>
-            )}
+
+            <AnimatePresence>
+              {langOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -6, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -6, scale: 0.97 }}
+                  transition={{ duration: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute left-0 top-[calc(100%+6px)] bg-white border border-gray-100 rounded-2xl shadow-xl overflow-hidden z-50"
+                  style={{ minWidth: 160, boxShadow: '0 8px 30px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06)' }}
+                >
+                  <div className="p-1.5 flex flex-col gap-0.5">
+                    {LANGUAGES.map(l => (
+                      <button
+                        key={l.code}
+                        onClick={() => { setLang(l.code); setLangOpen(false); }}
+                        className={cn(
+                          'flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium transition-colors text-left',
+                          l.code === lang
+                            ? 'text-[#6366F1] bg-indigo-50'
+                            : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                        )}
+                      >
+                        <span className="text-lg leading-none">{l.flag}</span>
+                        <span className="flex-1">{l.label}</span>
+                        {l.code === lang && (
+                          <Check size={13} className="text-[#6366F1] shrink-0" />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* WhatsApp */}
@@ -131,7 +179,7 @@ export default function Header() {
                       <img src={QR_URL} alt="WhatsApp QR" width={160} height={160} className="rounded-lg" />
                     </div>
                     <p className="text-xs text-gray-500 text-center leading-relaxed">
-                      Отсканируй QR-код камерой телефона,<br />чтобы открыть чат
+                      {t.whatsapp.scan}
                     </p>
                   </div>
                   <div className="px-5 pb-5">
@@ -141,7 +189,7 @@ export default function Header() {
                       rel="noopener noreferrer"
                       className="flex items-center justify-between w-full px-4 py-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white text-sm font-semibold rounded-xl transition-colors"
                     >
-                      Открыть в браузере
+                      {t.whatsapp.openDesktop}
                       <ArrowRight size={16} />
                     </a>
                   </div>
