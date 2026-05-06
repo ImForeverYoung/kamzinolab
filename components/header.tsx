@@ -54,7 +54,7 @@ export default function Header() {
           </div>
 
           {/* Музыка */}
-          <button
+          {/* <button
             onClick={() => setMusicOn(v => !v)}
             title={musicOn ? 'Выключить музыку' : 'Включить музыку'}
             className={cn(
@@ -67,7 +67,7 @@ export default function Header() {
               <rect x="6"  y={musicOn ? 1 : 2}  width="2.5" height={musicOn ? 14 : 12} rx="1.25" />
               <rect x="11" y={musicOn ? 4 : 6}  width="2.5" height={musicOn ? 9  : 8}  rx="1.25" />
             </svg>
-          </button>
+          </button> */}
 
           {/* Язык */}
           <div className="relative border-r border-gray-200" ref={langRef}>

@@ -1,5 +1,5 @@
-import { ArrowRight } from 'lucide-react';
 import { SectionContainer } from './section-container';
+import FooterContactForm from './footer-contact-form';
 
 const LINK_COLS = [
   {
@@ -13,7 +13,7 @@ const LINK_COLS = [
   {
     title: 'Проекты',
     links: [
-      { label: 'Piezometrics', href: '#' },
+      { label: 'Piezometrics', href: '/projects' },
     ],
   },
   {
@@ -38,25 +38,46 @@ export default function Footer() {
   return (
     <footer className="w-full bg-[#f8fafd] border-t border-gray-200">
 
-      {/* ── 1. CTA ── */}
+      {/* ── 1. CTA + Contact form ── */}
       <SectionContainer border className="border-gray-200">
-        <div className="py-16 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
-          <div className="space-y-3 max-w-md">
-            <h2 className="text-3xl font-bold text-[#1E1B4B]">
+        <div className="py-16 grid md:grid-cols-2 gap-12 md:gap-20 items-start">
+
+          {/* Left — heading + description */}
+          <div className="space-y-4">
+            <span className="block text-[11px] font-bold uppercase tracking-[0.18em] text-[#6366F1]">
+              Контакт
+            </span>
+            <h2 className="text-3xl font-bold text-[#1E1B4B] leading-tight">
               Есть сложная задача?
             </h2>
-            <p className="text-gray-500 leading-relaxed">
-              Расскажите о проекте — разберёмся в деталях и предложим решение.
+            <p className="text-gray-500 leading-relaxed text-sm max-w-sm">
+              Расскажите о проекте - разберёмся в деталях
+              и предложим решение.
             </p>
+
+            {/* Contact details */}
+            {/* <div className="pt-2 flex flex-col gap-2">
+              <a
+                href="mailto:hello@kamzino.kz"
+                className="text-sm text-gray-500 hover:text-[#1E1B4B] transition-colors"
+              >
+                hello@kamzino.kz
+              </a>
+              <a
+                href="https://wa.me/77071740428"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-gray-500 hover:text-[#1E1B4B] transition-colors"
+              >
+                +7 707 174 04 28
+              </a>
+              <span className="text-sm text-gray-400">Астана, Казахстан</span>
+            </div> */}
           </div>
-          <div className="flex items-center gap-3 shrink-0">
-            <a
-              href="mailto:hello@kamzino.kz"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#6366F1] hover:bg-[#4F46E5] text-white text-sm font-semibold rounded-lg transition-colors"
-            >
-              Обсудить проект <ArrowRight size={15} />
-            </a>
-          </div>
+
+          {/* Right — form */}
+          <FooterContactForm />
+
         </div>
       </SectionContainer>
 
