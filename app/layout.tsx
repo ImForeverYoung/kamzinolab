@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "KAMZINO LAB — Advanced Development & Monitoring",
   description: "High-performance development in Go, JavaScript, and real-time data monitoring systems",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/K.svg",
   },
 };
 

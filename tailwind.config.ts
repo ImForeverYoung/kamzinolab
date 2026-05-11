@@ -22,10 +22,10 @@ const config: Config = {
         'stripe': '0 7px 14px 0 rgba(60, 66, 87, 0.08), 0 3px 6px 0 rgba(0, 0, 0, 0.12)',
         'stripe-hover': '0 13px 27px -5px rgba(50, 50, 93, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.3)',
       },
-      // 3. Плавные анимации для элементов
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out forwards',
         'float': 'float 3s ease-in-out infinite',
+        'shine': 'shine 0.8s ease-in-out forwards',
       },
       keyframes: {
         fadeIn: {
@@ -35,6 +35,10 @@ const config: Config = {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
+        },
+        shine: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
         }
       },
       // 4. Шрифты (если будешь подключать через Google Fonts или локально)

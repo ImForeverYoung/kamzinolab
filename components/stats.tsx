@@ -146,10 +146,10 @@ export default function Stats() {
               <span className="text-4xl md:text-5xl font-bold text-white tracking-tight">
                 {s.value}
               </span>
-              <span className="mt-2 text-sm font-semibold text-indigo-300">
+              <span className="mt-2 text-base font-semibold text-indigo-300">
                 {s.label}
               </span>
-              <span className="mt-1 text-xs text-white/40 leading-relaxed">
+              <span className="mt-1 text-sm text-white/40 leading-relaxed">
                 {s.sub}
               </span>
             </motion.div>

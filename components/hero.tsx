@@ -62,21 +62,30 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-row gap-3 items-center pt-2"
           >
-            <a
+            <motion.a
               href="#contact"
-              className="group relative inline-flex items-center gap-2 bg-[#6366F1] hover:bg-[#4F46E5] text-white px-6 py-3 font-semibold rounded-lg transition-colors duration-200 select-none"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="group relative inline-flex items-center gap-2 bg-[#6366F1] text-white px-7 py-3.5 font-semibold rounded-xl transition-all duration-300 select-none overflow-hidden shadow-[0_10px_20px_-10px_rgba(99,102,241,0.5)] hover:shadow-[0_20px_40px_-15px_rgba(99,102,241,0.6)]"
             >
-              {t.hero.contactBtn}
+              {/* Shine effect */}
+              <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shine transition-transform" />
+              
+              <span className="relative z-10">{t.hero.contactBtn}</span>
+
               {/* Icon slot — chevron fades out, arrow fades in on hover */}
-              <span className="relative flex w-[16px] h-[16px]">
-                <span className="absolute inset-0 flex items-center justify-center transition-all duration-200 opacity-100 translate-x-0 group-hover:opacity-0 group-hover:-translate-x-1">
-                  <ChevronRight size={16} strokeWidth={2.5} />
+              <span className="relative z-10 flex w-[16px] h-[16px]">
+                <span className="absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-100 translate-x-0 group-hover:opacity-0 group-hover:-translate-x-2">
+                  <ChevronRight size={18} strokeWidth={2.5} />
                 </span>
-                <span className="absolute inset-0 flex items-center justify-center transition-all duration-200 opacity-0 translate-x-1 group-hover:opacity-100 group-hover:translate-x-0">
-                  <ArrowRight size={16} strokeWidth={2.5} />
+                <span className="absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0">
+                  <ArrowRight size={18} strokeWidth={2.5} />
                 </span>
               </span>
-            </a>
+
+              {/* Background layer for smooth color transition */}
+              <div className="absolute inset-0 bg-[#4F46E5] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </motion.a>
           </motion.div>
         </motion.div>
       </SectionContainer>
